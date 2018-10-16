@@ -20,4 +20,5 @@ x = Reshape((3,16))(x)
 
 ## Ref
 + LOUPE library (https://github.com/antoine77340/LOUPE)
-
++ Arandjelovic, Relja and Gronat, Petre and Torii, Akihiko and Pajdla, Tomas and Sivic, Josef, NetVLAD: CNN architecture for weakly supervised place recognition, CVPR 2016
++ Antoine Miech and Ivan Laptev and Josef Sivic, Learnable pooling with Context Gating for video classification, arXiv:1706.06905
