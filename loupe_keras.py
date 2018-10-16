@@ -314,7 +314,7 @@ class SoftDBoW(layers.Layer):
 
 
 class NetFV(layers.Layer):
-    """Creates a NetVLAD class.
+    """Creates a Net class.
     """
     def __init__(self, feature_size, max_samples, cluster_size, output_dim,
             gating=True,add_batch_norm=True, is_training=True, **kwargs):
