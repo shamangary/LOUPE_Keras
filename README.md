@@ -10,7 +10,7 @@ Rewrite the LOUPE library (https://github.com/antoine77340/LOUPE) into Keras ver
 ```
 import loupe_keras as lpk
 
-# input x size: (batchsize,max_samples,feature_size)
+# input x size: (batchsize, max_samples, feature_size)
 # output x size: (batchsize, output_dim)
 x = lpk.NetVLAD(feature_size=32, max_samples=20, cluster_size=3, output_dim=3*16)(x)
 x = Reshape((3,16))(x)
