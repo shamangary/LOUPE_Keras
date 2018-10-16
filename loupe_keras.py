@@ -24,24 +24,18 @@ import sys
 class ContextGating(layers.Layer):
     """Creates a NetVLAD class.
     """
-    def __init__(self, feature_size, max_samples, cluster_size, output_dim,
-            gating=True,add_batch_norm=True, is_training=True, **kwargs):
+    def __init__(self, **kwargs):
         
-        self.feature_size = feature_size
-        self.max_samples = max_samples
-        self.output_dim = output_dim
-        self.is_training = is_training
-        self.cluster_size = cluster_size
         super(ContextGating, self).__init__(**kwargs)
 
     def build(self, input_shape):
     # Create a trainable weight variable for this layer.
         self.gating_weights = self.add_weight(name='kernel_W1',
-                                      shape=(self.feature_size, self.cluster_size),
+                                      shape=(input_shape[-1], input_shape[-1]),
                                       initializer=tf.random_normal_initializer(stddev=1 / math.sqrt(input_shape[-1])),
                                       trainable=True)
         self.gating_biases = self.add_weight(name='kernel_B1',
-                                      shape=(self.cluster_size,),
+                                      shape=(input_shape[-1],),
                                       initializer=tf.random_normal_initializer(stddev=1 / math.sqrt(input_shape[-1])),
                                       trainable=True)
         
