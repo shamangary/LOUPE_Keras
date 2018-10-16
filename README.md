@@ -1,2 +1,2 @@
 # LOUPE_Keras
-Rewrite the LOUPE library into Keras version. Many learnable pooling methods are covered. (NetVLAD, NetRVLAD, SoftDBoW, NetFV)
+Rewrite the LOUPE library (https://github.com/antoine77340/LOUPE) into Keras version. Many learnable pooling methods are covered. (NetVLAD, NetRVLAD, SoftDBoW, NetFV)
