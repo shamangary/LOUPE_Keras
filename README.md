@@ -2,7 +2,7 @@
 
 (Ongoing project. If you find any bug, please inform me in the issue. Thanks)
 
-Rewrite the LOUPE library (https://github.com/antoine77340/LOUPE) into Keras version. Many learnable pooling methods are covered. (NetVLAD, NetRVLAD, SoftDBoW, NetFV, CG)
+Rewrite the LOUPE library (https://github.com/antoine77340/LOUPE) into Keras version. Many learnable pooling or differentiable aggregation methods are covered. (NetVLAD, NetRVLAD, SoftDBoW, NetFV, CG)
 
 
 
