@@ -41,7 +41,7 @@ class ContextGating(layers.Layer):
         
         super(ContextGating, self).build(input_shape)  # Be sure to call this at the end
 
-    def call(self, reshaped_input):
+    def call(self, inputs):
         """
         In Keras, there are two way to do matrix multiplication (dot product)
         1) K.dot : AxB -> when A has batchsize and B doesn't, use K.dot
@@ -53,11 +53,11 @@ class ContextGating(layers.Layer):
         tf.matmul might still work when the dim of A is (?,64), but this is too confusing.
         Just follow the above rules.
         """
-        gates = K.dot(reshaped_input, self.gating_weights)
+        gates = K.dot(inputs, self.gating_weights)
         gates += self.gating_biases
         gates = tf.sigmoid(gates)
 
-        activation = tf.multiply(reshaped_input,gates)
+        activation = tf.multiply(inputs,gates)
         return activation
 
     def compute_output_shape(self, input_shape):
@@ -68,13 +68,11 @@ class ContextGating(layers.Layer):
 class NetVLAD(layers.Layer):
     """Creates a NetVLAD class.
     """
-    def __init__(self, feature_size, max_samples, cluster_size, output_dim,
-            gating=True,add_batch_norm=True, is_training=True, **kwargs):
+    def __init__(self, feature_size, max_samples, cluster_size, output_dim, **kwargs):
         
         self.feature_size = feature_size
         self.max_samples = max_samples
         self.output_dim = output_dim
-        self.is_training = is_training
         self.cluster_size = cluster_size
         super(NetVLAD, self).__init__(**kwargs)
 
@@ -161,13 +159,11 @@ class NetVLAD(layers.Layer):
 class NetRVLAD(layers.Layer):
     """Creates a NetRVLAD class (Residual-less NetVLAD).
     """
-    def __init__(self, feature_size, max_samples, cluster_size, output_dim,
-            gating=True,add_batch_norm=True, is_training=True, **kwargs):
+    def __init__(self, feature_size, max_samples, cluster_size, output_dim, **kwargs):
         
         self.feature_size = feature_size
         self.max_samples = max_samples
         self.output_dim = output_dim
-        self.is_training = is_training
         self.cluster_size = cluster_size
         super(NetRVLAD, self).__init__(**kwargs)
     
@@ -243,13 +239,11 @@ class NetRVLAD(layers.Layer):
 class SoftDBoW(layers.Layer):
     """Creates a Soft Deep Bag-of-Features class.
     """
-    def __init__(self, feature_size, max_samples, cluster_size, output_dim,
-            gating=True,add_batch_norm=True, is_training=True, **kwargs):
+    def __init__(self, feature_size, max_samples, cluster_size, output_dim, **kwargs):
         
         self.feature_size = feature_size
         self.max_samples = max_samples
         self.output_dim = output_dim
-        self.is_training = is_training
         self.cluster_size = cluster_size
         super(SoftDBoW, self).__init__(**kwargs)
 
@@ -314,15 +308,13 @@ class SoftDBoW(layers.Layer):
 
 
 class NetFV(layers.Layer):
-    """Creates a Net class.
+    """Creates a NetVLAD class.
     """
-    def __init__(self, feature_size, max_samples, cluster_size, output_dim,
-            gating=True,add_batch_norm=True, is_training=True, **kwargs):
+    def __init__(self, feature_size, max_samples, cluster_size, output_dim, **kwargs):
         
         self.feature_size = feature_size
         self.max_samples = max_samples
         self.output_dim = output_dim
-        self.is_training = is_training
         self.cluster_size = cluster_size
         super(NetFV, self).__init__(**kwargs)
 
